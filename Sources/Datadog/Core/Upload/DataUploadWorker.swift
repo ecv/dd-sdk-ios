@@ -94,6 +94,7 @@ internal class DataUploadWorker: DataUploadWorkerType {
         queue.asyncAfter(deadline: .now() + delay, execute: work)
     }
 
+#if DD_SDK_COMPILED_FOR_TESTING
     /// Cancels scheduled uploads and stops scheduling next ones.
     /// - It does not affect the upload that has already begun.
     /// - It blocks the caller thread if called in the middle of upload execution.
@@ -106,6 +107,7 @@ internal class DataUploadWorker: DataUploadWorkerType {
             self.uploadWork = nil
         }
     }
+#endif
 }
 
 extension DataUploadConditions.Blocker: CustomStringConvertible {

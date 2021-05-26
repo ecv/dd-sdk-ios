@@ -138,4 +138,11 @@ internal final class LoggingFeature {
         self.storage = storage
         self.upload = upload
     }
+
+#if DD_SDK_COMPILED_FOR_TESTING
+    func deinitialize() {
+        upload.tearDown()
+        LoggingFeature.instance = nil
+    }
+#endif
 }
